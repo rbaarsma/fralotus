@@ -24,11 +24,6 @@ get_header();
 					<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 						<h1 class="entry-title">
 							<?php the_title(); ?>
-							<?php if (isset($data['feif']) && $data['feif']): ?>
-							<small>
-							  <?php echo $data['feif']; ?>
-							</small>
-							<?php endif ;?>
 						</h1>
 						<div class="row">
 							<div class="col-md-6">
@@ -48,13 +43,13 @@ get_header();
 								<?php if (isset($stamboom['name']['m']) && $stamboom['name']['m']): ?>
 								<dl class="dl-horizontal">
 								  <dt><?php _e('Moeder', 'icelandic-horse'); ?></dt>
-								  <dd><?php echo $stamboom['name']['m']; ?> <small><?php echo $stamboom['feif']['m']; ?></small></dd>
+								  <dd><?php echo $stamboom['name']['m']; ?></dd>
 								</dl>
 								<?php endif ;?>
 								<?php if (isset($stamboom['name']['m']) && $stamboom['name']['m']): ?>
 								<dl class="dl-horizontal">
 								  <dt><?php _e('Vader', 'icelandic-horse'); ?></dt>
-								  <dd><?php echo $stamboom['name']['f']; ?> <small><?php echo $stamboom['feif']['f']; ?></small></dd>
+								  <dd><?php echo $stamboom['name']['f']; ?></dd>
 								</dl>
 								<?php endif ;?>
 							</div>
