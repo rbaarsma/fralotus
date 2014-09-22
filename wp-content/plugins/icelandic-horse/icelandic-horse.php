@@ -30,11 +30,18 @@ function create_icelandic_horse() {
             ),
  
             'public' => true,
+		'publicly_queryable' => true,
+		'query_var' => true,
+		'rewrite' => true,
+		'capability_type' => 'post',
+		'hierarchical' => false,
+			
             'menu_position' => 15,
             'supports' => array( 'title', 'editor', 'comments', 'thumbnail' ),
-            'taxonomies' => array( '' ),
+             'taxonomies' => array('category'),
             'menu_icon' => plugins_url( 'images/horse_icon.jpg', __FILE__ ),
-            'has_archive' => true
+            'has_archive' => true,
+			'rewrite' => array( 'slug' => 'paarden', 'with_front' => true, 'hierarchical' => false ),
         )
     );
 }
@@ -72,31 +79,75 @@ function icelandic_horse_admin_init() {
 
 function display_icelandic_horse_personal_meta_box( $icelandic_horse ) {
     // Retrieve current name of the Director and Movie Rating based on review ID
-    $name = get_post_meta( $icelandic_horse->ID, 'name', true );
-    $feif = get_post_meta( $icelandic_horse->ID, 'feif', true );
-    $geboortedatum = get_post_meta( $icelandic_horse->ID, 'geboortedatum', true );
-    $kleur = get_post_meta( $icelandic_horse->ID, 'kleur', true );
+    $data = get_post_meta( $icelandic_horse->ID, 'data', true );
 	
     ?>
     <table>
         <tr>
             <td style="width: 100%">Naam</td>
-            <td><input type="text" size="80" name="icelandic_horse_name" value="<?php echo @$name; ?>" /></td>
+            <td><input type="text" size="80" name="icelandic_horse_data[name]" value="<?php echo @$data['name']; ?>" /></td>
         </tr>
         <tr>
             <td style="width: 100%">FEIF nummer</td>
-            <td><input type="text" size="80" name="icelandic_horse_feif" value="<?php echo @$feif; ?>" /></td>
+            <td><input type="text" size="80" name="icelandic_horse_data[feif]" value="<?php echo @$data['feif']; ?>" /></td>
         </tr>
         <tr>
             <td style="width: 100%">Geboortedatum</td>
-            <td><input type="date" size="80" name="icelandic_horse_geboortedatum" value="<?php echo @$geboortedatum; ?>" /></td>
+            <td><input type="date" size="80" name="icelandic_horse_data[geboortedatum]" value="<?php echo @$data['geboortedatum']; ?>" /></td>
         </tr>
         <tr>
             <td style="width: 100%">Kleur</td>
-            <td><input type="text" size="80" name="icelandic_horse_kleur" value="<?php echo @$kleur; ?>" /></td>
+            <td><input type="text" size="80" name="icelandic_horse_data[kleur]" value="<?php echo @$data['kleur']; ?>" /></td>
         </tr>
+        <tr>
+            <td style="width: 100%">Afbeelding</td>
+            <td>
+				<input type="text" name="icelandic_horse_data[image]" size="70" value="<?php echo @$data['image']; ?>" />
+				<input onclick="icelandic_horse_data_upload(event)" type="button" value="Upload">
+				<input onclick="jQuery(this).parent().parent().remove();" type="button" value="Remove">
+			</td>
+        </tr>
+
     </table>
-    <?php
+
+	<script type="text/javascript">
+
+	// Uploading files
+	var file_frame;
+	function icelandic_horse_data_upload(event)
+	{
+		btn = event.target;
+
+		// If the media frame already exists, reopen it.
+		if ( file_frame ) {
+		file_frame.open();
+		return;
+		}
+
+		// Create the media frame.
+		file_frame = wp.media.frames.file_frame = wp.media({
+		title: jQuery( this ).data( 'uploader_title' ),
+		button: {
+		text: jQuery( this ).data( 'uploader_button_text' ),
+		},
+		multiple: false // Set to true to allow multiple files to be selected
+		});
+
+		// When a file is selected, run a callback.
+		file_frame.on( 'select', function() {
+			// We set multiple to false so only get one image from the uploader
+			attachment = file_frame.state().get('selection').first().toJSON();
+			var url = attachment.url;
+
+			jQuery(btn).prev().val(attachment.url);
+		});
+
+		// Finally, open the modal
+		file_frame.open();
+	}
+
+	</script>
+	<?php
 }
 
 function display_icelandic_horse_stamboom_meta_box( $icelandic_horse ) {
@@ -204,7 +255,7 @@ function display_icelandic_horse_nakomelingen_meta_box( $icelandic_horse ) {
 			var count = jQuery('#icelandic_horse_nakomelingen table').length;
 			var html = jQuery('#icelandic_horse_nakomeling_0').html();
 			jQuery('#icelandic_horse_nakomelingen').append('<h3>Nakomeling #'+count+' <a onclick="jQuery(this).parent().next().remove(); jQuery(this).parent().remove(); return false;">(verwijder)</a></h3><table id="icelandic_horse_nakomeling_'+count+'">'+html);
-			jQuery('#icelandic_horse_nakomeling_'+count).find('input').each(function (i,elem) {
+			jQuery('#icelandic_horse_nakomeling_'+count).find('input[type=text]').each(function (i,elem) {
 				jQuery(elem).val('').attr('name', jQuery(elem).attr('name').replace(0,count));
 			});
 		}
@@ -415,7 +466,9 @@ function swp_file_upload()
 {
 	global $post;
 // Noncename needed to verify where the data originated
-	$gallery = get_post_meta($post->ID, 'gallery', true);
+	$galleries = get_post_meta($post->ID, 'gallery', true);
+	if (!$galleries)
+		$galleries = array(array());
 	/*
 	$media_file = get_post_meta($post->ID, '_wp_attached_file', true);
 	if (!empty($media_file))
@@ -425,72 +478,69 @@ function swp_file_upload()
 	 * 
 	 */
 	?>
-
-
-	<script type="text/javascript">
-
-	// Uploading files
-	var file_frame;
-	function icelandic_horse_gallery_upload(event)
-	{
-		btn = event.target;
-
-		// If the media frame already exists, reopen it.
-		if ( file_frame ) {
-		file_frame.open();
-		return;
-		}
-
-		// Create the media frame.
-		file_frame = wp.media.frames.file_frame = wp.media({
-		title: jQuery( this ).data( 'uploader_title' ),
-		button: {
-		text: jQuery( this ).data( 'uploader_button_text' ),
-		},
-		multiple: false // Set to true to allow multiple files to be selected
-		});
-
-		// When a file is selected, run a callback.
-		file_frame.on( 'select', function() {
-			// We set multiple to false so only get one image from the uploader
-			attachment = file_frame.state().get('selection').first().toJSON();
-			var url = attachment.url;
-
-			jQuery(btn).prev().val(attachment.url);
-		});
-
-		// Finally, open the modal
-		file_frame.open();
-	}
-
-	</script>
-
-	<div>
-	<table id="icelandic_horse_gallery">
-	<?php foreach ($gallery as $i=>$src): ?>
-		<tr id="icelandic_horse_gallery_<?php echo $i; ?>" valign="top">
-			<td>
-				<input type="text" name="icelandic_horse_gallery[<?php echo $i; ?>]" size="70" value="<?php echo $src; ?>" />
-				<input onclick="icelandic_horse_gallery_upload(event)" type="button" value="Upload">
-				<input onclick="jQuery(this).parent().parent().remove();" type="button" value="Remove">
-			</td>
-		</tr>
-	<?php endforeach; ?>
-	</table>
-	</div>    
+	<div id="icelandic_horse_galleries">
+		<?php foreach ($galleries as $i=>$gallery): ?>
+		<h3>Foto #<?php echo $i; ?> <a onclick="jQuery(this).parent().next().remove(); jQuery(this).parent().remove(); return false;">(verwijder)</a></h3>
+		<table id="icelandic_horse_gallery_<?php echo $i; ?>">
+			<tbody>
+				<tr>
+					<td style="width: 100%">Afbeelding</td>
+					<td>
+						<input type="text" name="icelandic_horse_gallery[<?php echo $i; ?>][image]" size="70" value="<?php echo @$gallery['image']; ?>" />
+						<input onclick="icelandic_horse_gallery_upload(event)" type="button" value="Upload">
+					</td>
+				</tr>
+				<tr>
+					<td style="width: 100%">Beschrijving</td>
+					<td><input type="text" size="80" name="icelandic_horse_gallery[<?php echo $i; ?>][desc]" value="<?php echo @$gallery['desc']; ?>" /></td>
+				</tr>
+			</tbody>
+		</table>
+		<?php endforeach; ?>
+	</div>	
 	
 	<script type="text/javascript">
 		function icelandic_horse_gallery_add()
 		{
-			var count = jQuery('#icelandic_horse_gallery tr').length;
+			var count = jQuery('#icelandic_horse_galleries table').length;
 			var html = jQuery('#icelandic_horse_gallery_0').html();
-			//<h3>Image #'+count+' <a onclick="jQuery(this).parent().next().remove(); jQuery(this).parent().remove(); return false;">(verwijder)</a></h3><table id="icelandic_horse_nakomeling_'+count+'">'+
-			jQuery('#icelandic_horse_gallery tbody').append('<tr id="icelandic_horse_gallery_'+count+'" valign="top">'+html+'</tr>');
+			jQuery('#icelandic_horse_galleries').append('<h3>Foto #'+count+' <a onclick="jQuery(this).parent().next().remove(); jQuery(this).parent().remove(); return false;">(verwijder)</a></h3><table id="icelandic_horse_gallery_'+count+'">'+html);
 			jQuery('#icelandic_horse_gallery_'+count).find('input[type=text]').each(function (i,elem) {
-				jQuery(elem).val('');
-				jQuery(elem).attr('name', jQuery(elem).attr('name').replace(0,count));
+				jQuery(elem).val('').attr('name', jQuery(elem).attr('name').replace(0,count));
 			});
-			
+		}
+		// Uploading files
+		var file_frame;
+		function icelandic_horse_gallery_upload(event)
+		{
+			btn = event.target;
+
+			// If the media frame already exists, reopen it.
+			if ( file_frame ) {
+			file_frame.open();
+			return;
+			}
+
+			// Create the media frame.
+			file_frame = wp.media.frames.file_frame = wp.media({
+			title: jQuery( this ).data( 'uploader_title' ),
+			button: {
+			text: jQuery( this ).data( 'uploader_button_text' ),
+			},
+			multiple: false // Set to true to allow multiple files to be selected
+			});
+
+			// When a file is selected, run a callback.
+			file_frame.on( 'select', function() {
+				// We set multiple to false so only get one image from the uploader
+				attachment = file_frame.state().get('selection').first().toJSON();
+				var url = attachment.url;
+
+				jQuery(btn).prev().val(attachment.url);
+			});
+
+			// Finally, open the modal
+			file_frame.open();
 		}
 	</script>
 	<input type="button" value="Toevoegen" onclick="icelandic_horse_gallery_add();">	
@@ -521,10 +571,7 @@ function add_icelandic_horse_fields( $icelandic_horse_id, $post ) {
 			return $post->ID;
 		
         // Store data in post meta table if present in post data
-		update_post_meta( $icelandic_horse_id, 'name', $_POST['icelandic_horse_name'] );
-		update_post_meta( $icelandic_horse_id, 'feif', $_POST['icelandic_horse_feif'] );
-		update_post_meta( $icelandic_horse_id, 'geboortedatum', $_POST['icelandic_horse_geboortedatum'] );
-		update_post_meta( $icelandic_horse_id, 'kleur', $_POST['icelandic_horse_kleur'] );
+		update_post_meta( $icelandic_horse_id, 'data', $_POST['icelandic_horse_data'] );
 		update_post_meta( $icelandic_horse_id, 'stamboom', $_POST['icelandic_horse_stamboom'] );
 		update_post_meta( $icelandic_horse_id, 'nakomelingen', $_POST['icelandic_horse_nakomeling'] );
 		update_post_meta( $icelandic_horse_id, 'keuring', $_POST['icelandic_horse_keuring'] );
@@ -535,14 +582,15 @@ function add_icelandic_horse_fields( $icelandic_horse_id, $post ) {
 add_filter( 'template_include', 'include_template_function', 1 );
 
 function include_template_function( $template_path ) {
-    if ( get_post_type() == 'movie_reviews' ) {
+	if ( get_post_type() == 'icelandic_horse' ) {
         if ( is_single() ) {
             // checks if the file exists in the theme first,
             // otherwise serve the file from the plugin
-            if ( $theme_file = locate_template( array ( 'single-icelandic-horse.php' ) ) ) {
+            if ( $theme_file = locate_template( array ( 'single-icelandic_horse.php' ) ) ) {
                 $template_path = $theme_file;
             } else {
-                $template_path = plugin_dir_path( __FILE__ ) . '/single-icelandic-horse.php';
+				
+                $template_path = plugin_dir_path( __FILE__ ) . '/single-icelandic_horse.php';
             }
         }
     }
