@@ -1,0 +1,25 @@
+/*
+Theme Name: Arcade Basic Child
+Theme URI: 
+Description: Fralotus Theme (Arcade Basic Child)
+Author: Rein Baasma
+Author URI: http://www.solidwebcode.com/
+Template: arcade-basic
+Version: 0.1.0
+*/
+
+
+@import url( '../arcade-basic/style.css' );
+
+/*
+ * Show only active submenu
+ */
+.menu .menu-item ul { display: none; }
+.menu .current-page-parent.menu-item ul { display: block; }
+.menu .current_page_item.menu-item ul { display: block; }
+
+/*
+ * Shadow to better read site title/description
+ */
+.site-title { text-shadow: 0 1px 2px rgba(0,0,0,0.6); }
+.site-description { text-shadow: 0 1px 2px rgba(0,0,0,0.6); }
