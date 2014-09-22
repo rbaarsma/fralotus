@@ -12,9 +12,24 @@ Version: 0.1.0
 @import url( '../arcade-basic/style.css' );
 
 /*
+ * Add google font for h1
+ */
+@import url(http://fonts.googleapis.com/css?family=Rock+Salt);
+h1.entry-title { font-family: 'Rock Salt', cursive; }
+
+/**
+ * Make active menu item bold
+ */
+.current-menu-ancestor a, .current-menu-ancestor a { font-weight: bold; }
+.current-menu-ancestor .sub-menu a { font-weight: normal; }
+.current-menu-item a, .current_page_item a { font-weight: bold !important; }
+
+/*
  * Show only active submenu
  */
 .menu .menu-item ul { display: none; }
+.menu .current-menu-parent.menu-item ul { display: block; }
+.menu .current-menu-item.menu-item ul { display: block; }
 .menu .current-page-parent.menu-item ul { display: block; }
 .menu .current_page_item.menu-item ul { display: block; }
 
