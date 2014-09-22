@@ -37,7 +37,7 @@ function create_icelandic_horse() {
 		'hierarchical' => false,
 			
             'menu_position' => 15,
-            'supports' => array( 'title', 'editor', 'comments', 'thumbnail' ),
+            'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
              'taxonomies' => array('category'),
             'menu_icon' => plugins_url( 'images/horse_icon.jpg', __FILE__ ),
             'has_archive' => true,
@@ -90,6 +90,16 @@ function display_icelandic_horse_personal_meta_box( $icelandic_horse ) {
         <tr>
             <td style="width: 100%">FEIF nummer</td>
             <td><input type="text" size="80" name="icelandic_horse_data[feif]" value="<?php echo @$data['feif']; ?>" /></td>
+        </tr>
+        <tr>
+            <td style="width: 100%">Geslacht</td>
+            <td>
+				<select name="icelandic_horse_data[gender]">
+					<option value="hengst" <?php echo @$data['gender']=='hengst' ? 'selected' : '' ?>>Hengst</option>
+					<option value="ruin" <?php echo @$data['gender']=='ruin' ? 'selected' : '' ?>>Ruin</option>
+					<option value="merrie" <?php echo @$data['gender']=='merrie' ? 'selected' : '' ?>>Merrie</option>
+				</select>
+			</td>
         </tr>
         <tr>
             <td style="width: 100%">Geboortedatum</td>
@@ -155,57 +165,24 @@ function display_icelandic_horse_stamboom_meta_box( $icelandic_horse ) {
     $stamboom = get_post_meta( $icelandic_horse->ID, 'stamboom', true );
     $name = @$stamboom['name'];
 	$feif = @$stamboom['feif'];
+	$link = @$stamboom['link'];
 
 	?>
     <table>
+		<?php foreach (array('m','f','ff','fm','mf','mm') as $key): ?>
         <tr>
-            <td style="width: 100%">Naam Moeder (M)</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[name][m]" value="<?php echo @$name['m']; ?>" /></td>
+            <td style="width: 100%">Naam <?php echo strtoupper($key); ?></td>
+            <td><input type="text" size="80" name="icelandic_horse_stamboom[name][<?php echo $key; ?>]" value="<?php echo @$name[$key]; ?>" /></td>
         </tr>
         <tr>
-            <td style="width: 100%">FEIF Moeder (M)</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[feif][m]" value="<?php echo @$feif['m']; ?>" /></td>
-        </tr>
-        <tr>
-            <td style="width: 100%">Naam Vader (F)</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[name][f]" value="<?php echo @$name['f']; ?>" /></td>
-        </tr>
-        <tr>
-            <td style="width: 100%">FEIF Vader (F)</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[feif][f]" value="<?php echo @$feif['f']; ?>" /></td>
-        </tr>
-        <tr>
-            <td style="width: 100%">Naam FF</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[name][ff]" value="<?php echo @$name['ff']; ?>" /></td>
-        </tr>
-        <tr>
-            <td style="width: 100%">FEIF FF</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[feif][ff]" value="<?php echo @$feif['ff']; ?>" /></td>
+            <td style="width: 100%">FEIF <?php echo strtoupper($key); ?></td>
+            <td><input type="text" size="80" name="icelandic_horse_stamboom[feif][<?php echo $key; ?>]" value="<?php echo @$feif[$key]; ?>" /></td>
         </tr>
 		<tr>
-            <td style="width: 100%">Naam FM</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[name][fm]" value="<?php echo @$name['fm']; ?>" /></td>
-        </tr>
-        <tr>
-            <td style="width: 100%">FEIF FM</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[feif][fm]" value="<?php echo @$feif['fm']; ?>" /></td>
-        </tr>
-		<tr>
-            <td style="width: 100%">Naam MF</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[name][mf]" value="<?php echo @$name['mf']; ?>" /></td>
-        </tr>
-        <tr>
-            <td style="width: 100%">FEIF MF</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[feif][mf]" value="<?php echo @$feif['mf']; ?>" /></td>
-        </tr>
-		<tr>
-            <td style="width: 100%">Naam MM</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[name][mm]" value="<?php echo @$name['mm']; ?>" /></td>
-        </tr>
-        <tr>
-            <td style="width: 100%">FEIF MM</td>
-            <td><input type="text" size="80" name="icelandic_horse_stamboom[feif][mm]" value="<?php echo @$feif['mm']; ?>" /></td>
-        </tr>
+			<td style="width: 100%">Link <?php echo strtoupper($key); ?></td>
+			<td><input type="text" size="80" name="icelandic_horse_stamboom[link][<?php echo $key; ?>]" value="<?php echo $link[$key]; ?>" /></td>
+		</tr>
+		<?php endforeach; ?>
     </table>
     <?php
 }
@@ -244,6 +221,10 @@ function display_icelandic_horse_nakomelingen_meta_box( $icelandic_horse ) {
 						<input type="text" name="icelandic_horse_nakomeling[<?php echo $i; ?>][image]" size="70" value="<?php echo @$nakomeling['image']; ?>" />
 						<input onclick="icelandic_horse_nakomeling_upload(event)" type="button" value="Upload">
 					</td>
+				</tr>
+				<tr>
+					<td style="width: 100%">Link</td>
+					<td><input type="text" size="80" name="icelandic_horse_nakomeling[<?php echo $i; ?>][link]" value="<?php echo @$nakomeling['link']; ?>" /></td>
 				</tr>
 			</tbody>
 		</table>
@@ -311,6 +292,12 @@ function display_icelandic_horse_keuring_meta_box( $icelandic_horse ) {
 		</thead>
 		<tbody>
 			<tr>
+				<td style="width: 100%">Laten zien</td>
+				<td><input type="checkbox" size="5" name="icelandic_horse_keuring[exterieur][show][self]" value="yes" <?php if (@$exterieur['show']['self']): ?>checked<?php endif; ?> /></td>
+				<td><input type="checkbox" size="5" name="icelandic_horse_keuring[exterieur][show][m]" value="yes" <?php if (@$exterieur['show']['m']): ?>checked<?php endif; ?> /></td>
+				<td><input type="checkbox" size="5" name="icelandic_horse_keuring[exterieur][show][f]" value="yes" <?php if (@$exterieur['show']['f']): ?>checked<?php endif; ?> /></td>
+			</tr>
+			<tr>
 				<td style="width: 100%">Hoofd</td>
 				<td><input type="number" size="5" name="icelandic_horse_keuring[exterieur][hoofd][self]" value="<?php echo @$exterieur['hoofd']['self']; ?>" /></td>
 				<td><input type="number" size="5" name="icelandic_horse_keuring[exterieur][hoofd][m]" value="<?php echo @$exterieur['hoofd']['m']; ?>" /></td>
@@ -377,6 +364,12 @@ function display_icelandic_horse_keuring_meta_box( $icelandic_horse ) {
 			<th>Vader</th>
 		</thead>
 		<tbody>
+			<tr>
+				<td style="width: 100%">Laten zien</td>
+				<td><input type="checkbox" size="5" name="icelandic_horse_keuring[verrichtingen][show][self]" value="yes" <?php if (@$verrichtingen['show']['self']): ?>checked<?php endif; ?> /></td>
+				<td><input type="checkbox" size="5" name="icelandic_horse_keuring[verrichtingen][show][m]" value="yes" <?php if (@$verrichtingen['show']['m']): ?>checked<?php endif; ?> /></td>
+				<td><input type="checkbox" size="5" name="icelandic_horse_keuring[verrichtingen][show][f]" value="yes" <?php if (@$verrichtingen['show']['f']): ?>checked<?php endif; ?> /></td>
+			</tr>
 			<tr>
 				<td style="width: 100%">T&ouml;lt</td>
 				<td><input type="number" size="5" name="icelandic_horse_keuring[verrichtingen][tolt][self]" value="<?php echo @$verrichtingen['tolt']['self']; ?>" /></td>
@@ -593,6 +586,18 @@ function include_template_function( $template_path ) {
                 $template_path = plugin_dir_path( __FILE__ ) . '/single-icelandic_horse.php';
             }
         }
+		else
+		{
+            // checks if the file exists in the theme first,
+            // otherwise serve the file from the plugin
+            if ( $theme_file = locate_template( array ( 'page-icelandic_horse.php' ) ) ) {
+                $template_path = $theme_file;
+            } else {
+				
+                $template_path = plugin_dir_path( __FILE__ ) . '/page-icelandic_horse.php';
+            }
+			
+		}
     }
     return $template_path;
 }
