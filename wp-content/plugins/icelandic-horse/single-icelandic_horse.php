@@ -51,13 +51,37 @@ wp_enqueue_style('jquery.fancybox.css','/wp-content/themes/fralotus-arcade-child
 								<?php if (isset($data['geboortedatum']) && $data['geboortedatum']): ?>
 								<dl class="dl-horizontal">
 								  <dt><?php _e('Geboortedatum', 'icelandic-horse'); ?></dt>
-								  <dd><?php echo $data['geboortedatum']; ?></dd>
+								  <dd><?php $ts = strtotime($data['geboortedatum']); echo $ts ? strftime('%e %B  %Y', $ts) : $data['geboortedatum']; ?></dd>
 								</dl>
 								<?php endif ;?>
 								<?php if (isset($data['kleur']) && $data['kleur']): ?>
 								<dl class="dl-horizontal">
 								  <dt><?php _e('Kleur', 'icelandic-horse'); ?></dt>
 								  <dd><?php echo $data['kleur']; ?></dd>
+								</dl>
+								<?php endif ;?>
+								<?php if (isset($data['keuringsresultaat']) && $data['keuringsresultaat']): ?>
+								<dl class="dl-horizontal">
+								  <dt><?php _e('Keuringsresultaat', 'icelandic-horse'); ?></dt>
+								  <dd><?php echo $data['keuringsresultaat']; ?></dd>
+								</dl>
+								<?php endif ;?>
+								<?php if (isset($data['pricecat']) && $data['pricecat']): ?>
+								<dl class="dl-horizontal">
+								  <dt><?php _e('Prijscategorie', 'icelandic-horse'); ?></dt>
+								  <dd><?php echo $data['pricecat']; ?></dd>
+								</dl>
+								<?php endif ;?>								
+								<?php if (isset($data['status']) && $data['status']): ?>
+								<dl class="dl-horizontal">
+								  <dt>&nbsp;</dt>
+								  <dd><?php echo $data['status']; ?></dd>
+								</dl>
+								<?php endif ;?>								
+								<?php if (isset($data['studfee']) && $data['studfee']): ?>
+								<dl class="dl-horizontal">
+								  <dt><?php _e('Dekgeld', 'icelandic-horse'); ?></dt>
+								  <dd><?php echo $data['studfee']; ?></dd>
 								</dl>
 								<?php endif ;?>
 							</div>
@@ -67,58 +91,65 @@ wp_enqueue_style('jquery.fancybox.css','/wp-content/themes/fralotus-arcade-child
 							</div>
 							<?php endif; ?>
 						</div>
-
 						<div class="" id="icelandic-horse-tabs">
 							<!-- extra info? -->
 							<ul class="nav nav-tabs" role="tablist">
+								<?php if ($fotos !== false): ?>
 								<li class="active">
 									<a role="tab" data-toggle="tab" href="#gallery"><?php echo _e("Foto's"); ?></a>
 								</li>
-								<li>
+								<?php endif; ?>
+								<?php if (get_the_content() != ''): ?>
+								<li <?php if ($fotos === false): ?>class="active"<?php endif; ?>>
 									<a role="tab" data-toggle="tab" href="#info"><?php echo _e('Informatie'); ?></a>
 								</li>
+								<?php endif; ?>
+								<?php if ($nakomelingen !== false && $nakomelingen[0]['name'] != ''): ?>
+								
 								<li>
 									<a role="tab" data-toggle="tab" href="#nakomelingen"><?php echo _e('Nakomelingen'); ?></a>
 								</li>
+								<?php endif; ?>
+								<?php if (@$verrichtingen['show']['self'] || @$exterieur['show']['self'] || @$verrichtingen['show']['f'] || @$exterieur['show']['f'] || @$verrichtingen['show']['m'] || @$exterieur['show']['m']): ?>
 								<li>
 									<a role="tab" data-toggle="tab" href="#keuringsresultaten"><?php echo _e('Keurings resultaten') ?></a>
 								</li>
+								<?php endif; ?>
+								<?php if ($stamboom['name']['m'] || $stamboom['name']['f']): ?>
 								<li>
 									<a role="tab" data-toggle="tab" href="#stamboom"><?php echo _e('Stamboom') ?></a>
 								</li>
+								<?php endif; ?>
 							</ul>
 
 							<div class="tab-content">
-								<div class="tab-pane active" id="gallery">
-										<div class="row">
-											<?php foreach ($fotos as $foto): ?>
-												<?php if ($foto['image']): ?>
-													<div class="col-sm-6 col-md-3">
-														<div class="thumbnail">
-															<a rel='gallery' href='<?php echo $foto['image']; ?>' class='fancybox'><img src="<?php echo $foto['image']; ?>" class="img-responsive img-rounded" alt="" title="<?php echo $foto['desc']; ?>"></a>
-															<?php if ($foto['desc']): ?>
-																<small class="caption">
-																	<?php echo $foto['desc']; ?>
-																</small>
-															<?php endif; ?>
-														</div>
+								<div class="tab-pane <?php if ($fotos !== false): ?>active<?php endif; ?>" id="gallery">
+									<div class="row">
+										<?php foreach ($fotos as $foto): ?>
+											<?php if ($foto['image']): ?>
+												<div class="col-sm-6 col-md-3">
+													<div class="thumbnail">
+														<a rel='gallery' href='<?php echo $foto['image']; ?>' class='fancybox'><img src="<?php echo $foto['image']; ?>" class="img-responsive img-rounded" alt="" title="<?php echo $foto['desc']; ?>"></a>
+														<?php if ($foto['desc']): ?>
+															<small class="caption">
+																<?php echo $foto['desc']; ?>
+															</small>
+														<?php endif; ?>
 													</div>
-													<?php endif; ?>
-											<?php endforeach; ?>
-										</div>
+												</div>
+												<?php endif; ?>
+										<?php endforeach; ?>
+									</div>
 								</div>
-								<div class="tab-pane" id="info">
-									<?php the_content( __( 'Read more', 'arcade') ); ?>
+								<div class="tab-pane <?php if ($fotos === false): ?>active<?php endif; ?>" id="info" >
+									<?php the_content(); ?>
 								</div>
 								<div class="tab-pane" id="nakomelingen">
 									<?php foreach ($nakomelingen as $nakomeling): ?>
-										<div class="row">
+										<h2><?php echo $nakomeling['name']; ?></h2>
+										<div class="row icelandic-horse-nakomelingen">
 											<div class="col-sm-6">
 												<?php if (isset($nakomeling['name']) && $nakomeling['name']): ?>
-												<dl class="dl-horizontal">
-												  <dt><?php _e('Naam', 'icelandic-horse'); ?></dt>
-												  <dd><?php echo $nakomeling['name']; ?></dd>
-												</dl>
 												<?php endif ;?>
 												<?php if (isset($nakomeling['feif']) && $nakomeling['feif']): ?>
 												<dl class="dl-horizontal">
@@ -132,16 +163,16 @@ wp_enqueue_style('jquery.fancybox.css','/wp-content/themes/fralotus-arcade-child
 												  <dd><?php echo $nakomeling['year']; ?></dd>
 												</dl>
 												<?php endif ;?>
-												<?php if (isset($nakomeling['parent']) && $nakomeling['parent']): ?>
-												<dl class="dl-horizontal">
-												  <dt><?php $data['gender'] == 'merrie' ? _e('Vader', 'icelandic-horse') : _e('Moeder', 'icelandic-horse'); ?></dt>
-												  <dd><?php echo $nakomeling['parent']; ?></dd>
-												</dl>
-												<?php endif ;?>
 												<?php if (isset($nakomeling['kleur']) && $nakomeling['kleur']): ?>
 												<dl class="dl-horizontal">
 												  <dt><?php _e('Kleur', 'icelandic-horse'); ?></dt>
 												  <dd><?php echo $nakomeling['kleur']; ?></dd>
+												</dl>
+												<?php endif ;?>
+												<?php if (isset($nakomeling['parent']) && $nakomeling['parent']): ?>
+												<dl class="dl-horizontal">
+												  <dt><?php $data['gender'] == 'merrie' ? _e('Vader', 'icelandic-horse') : _e('Moeder', 'icelandic-horse'); ?></dt>
+												  <dd><?php echo $nakomeling['parent']; ?></dd>
 												</dl>
 												<?php endif ;?>
 												<?php if (isset($nakomeling['link']) && $nakomeling['link']): ?>
@@ -153,7 +184,7 @@ wp_enqueue_style('jquery.fancybox.css','/wp-content/themes/fralotus-arcade-child
 											</div>
 											<?php if (isset($nakomeling['image']) && $nakomeling['image']): ?>
 											<div class="col-sm-6">
-												<a rel="nakomelingen" href='<?php echo $nakomeling['image']; ?>' class='fancybox'><img class='img-responsive img-rounded' src="<?php echo $nakomeling['image']; ?>" class="img-responsive"></a>
+												<a rel="nakomelingen" href='<?php echo $nakomeling['image']; ?>' class='fancybox'><img style='width: 100%;' class='img-responsive img-rounded' src="<?php echo $nakomeling['image']; ?>" class="img-responsive"></a>
 											</div>
 											<?php endif; ?>
 										</div>

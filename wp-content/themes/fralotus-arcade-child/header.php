@@ -32,6 +32,10 @@ $space_class = '';
 
 		<header id="header">
 			<nav id="site-navigation" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+				<div class='pull-right'>
+					<?php qtrans_generateLanguageSelectCode('image'); ?>
+				</div>
+
 				<h3 class="sr-only"><?php _e( 'Main menu', 'arcade' ); ?></h3>
 				<a class="sr-only" href="#primary" title="<?php esc_attr_e( 'Skip to content', 'arcade' ); ?>"><?php _e( 'Skip to content', 'arcade' ); ?></a>
 
@@ -49,6 +53,8 @@ $space_class = '';
 					wp_nav_menu( array( 'theme_location' => 'primary', 'container' => '', 'menu_class' => 'swc-topmenu nav navbar-nav' . $menu_class, 'fallback_cb' => 'bavotasan_default_menu', 'depth' => 2 ) );
 					?>
 				</div>
+				
+
 			</nav><!-- #site-navigation -->
 
 			 <div class="title-card-wrapper">

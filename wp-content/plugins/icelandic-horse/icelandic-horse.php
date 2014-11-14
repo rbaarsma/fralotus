@@ -37,7 +37,7 @@ function create_icelandic_horse() {
 		'hierarchical' => false,
 			
             'menu_position' => 15,
-            'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
+            'supports' => array( 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes' ),
              'taxonomies' => array('category'),
             'menu_icon' => plugins_url( 'images/horse_icon.jpg', __FILE__ ),
             'has_archive' => true,
@@ -98,17 +98,42 @@ function display_icelandic_horse_personal_meta_box( $icelandic_horse ) {
 					<option value="hengst" <?php echo @$data['gender']=='hengst' ? 'selected' : '' ?>>Hengst</option>
 					<option value="ruin" <?php echo @$data['gender']=='ruin' ? 'selected' : '' ?>>Ruin</option>
 					<option value="merrie" <?php echo @$data['gender']=='merrie' ? 'selected' : '' ?>>Merrie</option>
+					<option value="onbekend" <?php echo @$data['gender']=='onbekend' ? 'selected' : '' ?>>Onbekend</option>
 				</select>
 			</td>
         </tr>
         <tr>
             <td style="width: 100%">Geboortedatum</td>
-            <td><input type="date" size="80" name="icelandic_horse_data[geboortedatum]" value="<?php echo @$data['geboortedatum']; ?>" /></td>
+            <td><input type="text" size="80" name="icelandic_horse_data[geboortedatum]" value="<?php echo @$data['geboortedatum']; ?>" /></td>
         </tr>
         <tr>
             <td style="width: 100%">Kleur</td>
             <td><input type="text" size="80" name="icelandic_horse_data[kleur]" value="<?php echo @$data['kleur']; ?>" /></td>
         </tr>
+        <tr>
+            <td style="width: 100%">Status</td>
+            <td><input type="text" size="80" name="icelandic_horse_data[status]" value="<?php echo @$data['status']; ?>" /></td>
+        </tr>
+        <tr>
+            <td style="width: 100%">Zwangere Moeder</td>
+            <td>
+				<input type="text" name="icelandic_horse_data[pregnant]" size="70" value="<?php echo @$data['pregnant']; ?>" />
+				<input onclick="icelandic_horse_data_upload(event)" type="button" value="Upload">
+				<input onclick="jQuery(this).parent().parent().remove();" type="button" value="Remove">
+			</td>
+        </tr>
+        <tr>
+            <td style="width: 100%">Prijscategory (Verkoop)</td>
+            <td><input type="text" size="80" name="icelandic_horse_data[pricecat]" value="<?php echo @$data['pricecat']; ?>" /></td>
+        </tr>
+        <tr>
+            <td style="width: 100%">Dekgeld (Hengsten)</td>
+            <td><input type="text" size="80" name="icelandic_horse_data[studfee]" value="<?php echo @$data['studfee']; ?>" /></td>
+        </tr>
+        <tr>
+            <td style="width: 100%">Keuringsresultaat</td>
+            <td><input type="text" size="80" name="icelandic_horse_data[keuringsresultaat]" value="<?php echo @$data['keuringsresultaat']; ?>" /></td>
+        </tr>		
         <tr>
             <td style="width: 100%">Afbeelding</td>
             <td>
@@ -210,6 +235,10 @@ function display_icelandic_horse_nakomelingen_meta_box( $icelandic_horse ) {
 				<tr>
 					<td style="width: 100%">Andere ouder</td>
 					<td><input type="text" size="80" name="icelandic_horse_nakomeling[<?php echo $i; ?>][parent]" value="<?php echo @$nakomeling['parent']; ?>" /></td>
+				</tr>
+				<tr>
+					<td style="width: 100%">Kleur</td>
+					<td><input type="text" size="80" name="icelandic_horse_nakomeling[<?php echo $i; ?>][kleur]" value="<?php echo @$nakomeling['kleur']; ?>" /></td>
 				</tr>
 				<tr>
 					<td style="width: 100%">Geboortejaar</td>
@@ -590,13 +619,12 @@ function include_template_function( $template_path ) {
 		{
             // checks if the file exists in the theme first,
             // otherwise serve the file from the plugin
-            if ( $theme_file = locate_template( array ( 'page-icelandic_horse.php' ) ) ) {
+            if ( $theme_file = locate_template( array ( 'category-icelandic_horse.php' ) ) ) {
                 $template_path = $theme_file;
             } else {
 				
-                $template_path = plugin_dir_path( __FILE__ ) . '/page-icelandic_horse.php';
-            }
-			
+                $template_path = plugin_dir_path( __FILE__ ) . '/category-icelandic_horse.php';
+            }			
 		}
     }
     return $template_path;

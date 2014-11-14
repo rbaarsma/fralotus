@@ -1,0 +1,194 @@
+# Copyright (C) 2014 Icelandic Horse
+# This file is distributed under the same license as the Icelandic Horse package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Icelandic Horse 1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/icelandic-horse\n"
+"POT-Creation-Date: 2014-11-03 16:46:12+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: content-icelandic_horse.php:30 single-icelandic_horse.php:53
+msgid "Geboortedatum"
+msgstr ""
+
+#: content-icelandic_horse.php:36 single-icelandic_horse.php:59
+#: single-icelandic_horse.php:168
+msgid "Kleur"
+msgstr ""
+
+#: content-icelandic_horse.php:43 single-icelandic_horse.php:174
+#: single-icelandic_horse.php:199 single-icelandic_horse.php:229
+#: single-icelandic_horse.php:296
+msgid "Moeder"
+msgstr ""
+
+#: content-icelandic_horse.php:49 single-icelandic_horse.php:174
+#: single-icelandic_horse.php:200 single-icelandic_horse.php:230
+#: single-icelandic_horse.php:297
+msgid "Vader"
+msgstr ""
+
+#: content-icelandic_horse.php:55 single-icelandic_horse.php:65
+msgid "Keuringsresultaat"
+msgstr ""
+
+#: content-icelandic_horse.php:61 single-icelandic_horse.php:71
+msgid "Prijscategorie"
+msgstr ""
+
+#: content-icelandic_horse.php:67 single-icelandic_horse.php:83
+msgid "Dekgeld"
+msgstr ""
+
+#: content-icelandic_horse.php:84
+msgid "Bekijken"
+msgstr ""
+
+#: content-icelandic_horse.php:87
+msgid "Pages:"
+msgstr ""
+
+#: content-icelandic_horse.php:89
+msgid "Edit"
+msgstr ""
+
+#: single-icelandic_horse.php:41
+msgid "Geslacht"
+msgstr ""
+
+#: single-icelandic_horse.php:47 single-icelandic_horse.php:156
+msgid "FEIF Nummer"
+msgstr ""
+
+#: single-icelandic_horse.php:99
+msgid "Foto's"
+msgstr ""
+
+#: single-icelandic_horse.php:104
+msgid "Informatie"
+msgstr ""
+
+#: single-icelandic_horse.php:110
+msgid "Nakomelingen"
+msgstr ""
+
+#: single-icelandic_horse.php:115
+msgid "Keurings resultaten"
+msgstr ""
+
+#: single-icelandic_horse.php:120
+msgid "Stamboom"
+msgstr ""
+
+#: single-icelandic_horse.php:162
+msgid "Geboortejaar"
+msgstr ""
+
+#: single-icelandic_horse.php:194
+msgid "Totalen"
+msgstr ""
+
+#: single-icelandic_horse.php:204 single-icelandic_horse.php:224
+msgid "Exterieur"
+msgstr ""
+
+#: single-icelandic_horse.php:210
+msgid "Verrichtingen"
+msgstr ""
+
+#: single-icelandic_horse.php:216
+msgid "Gemiddeld"
+msgstr ""
+
+#: single-icelandic_horse.php:227 single-icelandic_horse.php:294
+msgid "Onderdeel"
+msgstr ""
+
+#: single-icelandic_horse.php:234
+msgid "Hoofd"
+msgstr ""
+
+#: single-icelandic_horse.php:240
+msgid "Hals/Schouder/Borst"
+msgstr ""
+
+#: single-icelandic_horse.php:246
+msgid "Bovenlijn/kruis"
+msgstr ""
+
+#: single-icelandic_horse.php:252
+msgid "Verhoudingen"
+msgstr ""
+
+#: single-icelandic_horse.php:258
+msgid "Benen"
+msgstr ""
+
+#: single-icelandic_horse.php:264
+msgid "Gewrichten"
+msgstr ""
+
+#: single-icelandic_horse.php:270
+msgid "Hoeven"
+msgstr ""
+
+#: single-icelandic_horse.php:276
+msgid "Manen/staart"
+msgstr ""
+
+#: single-icelandic_horse.php:282 single-icelandic_horse.php:355
+msgid "Totaal"
+msgstr ""
+
+#: single-icelandic_horse.php:301
+msgid "T&ouml;lt"
+msgstr ""
+
+#: single-icelandic_horse.php:307
+msgid "Langzame T&ouml;lt"
+msgstr ""
+
+#: single-icelandic_horse.php:313
+msgid "Draf"
+msgstr ""
+
+#: single-icelandic_horse.php:319
+msgid "Telgang"
+msgstr ""
+
+#: single-icelandic_horse.php:325
+msgid "Galop"
+msgstr ""
+
+#: single-icelandic_horse.php:331
+msgid "Langzame Galop"
+msgstr ""
+
+#: single-icelandic_horse.php:337
+msgid "Karakter/temperament"
+msgstr ""
+
+#: single-icelandic_horse.php:343
+msgid "Indruk/Beeld onder de ruiter"
+msgstr ""
+
+#: single-icelandic_horse.php:349
+msgid "Stap"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Icelandic Horse"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "custom post type for Icelandic Horses"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Rein Baarsma"
+msgstr ""
