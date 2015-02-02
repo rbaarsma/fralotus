@@ -61,7 +61,25 @@ $space_class = '';
                 <div class="title-card">
     				<div id="site-meta">
     					<h1 id="site-title">
-    						<a href="<?php echo esc_url( home_url() ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+							<?php
+							switch (get_locale())
+							{
+								case 'de_DE':
+									$title = "Lótus Island Pferde";
+									break;
+								case 'en_US':
+									$title = "Lótus Icelandic Horses";
+									break;
+								case 'pl_PL':
+									$title = "Lótus Konie Islandzkie";
+									break;
+								case 'nl_NL':
+									$title = "Lótus IJslandse Paarden";
+								default:
+									break;
+							}
+							?>
+    						<a href="<?php echo esc_url( home_url() ); ?>" rel="home"><?php echo $title ?></a>
     					</h1>
 
     					<?php if ( $bavotasan_theme_options['header_icon'] ) { ?>

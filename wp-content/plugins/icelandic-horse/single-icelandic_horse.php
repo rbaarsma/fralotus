@@ -96,28 +96,33 @@ wp_enqueue_style('jquery.fancybox.css','/wp-content/themes/fralotus-arcade-child
 							<ul class="nav nav-tabs" role="tablist">
 								<?php if ($fotos !== false): ?>
 								<li class="active">
-									<a role="tab" data-toggle="tab" href="#gallery"><?php echo _e("Foto's"); ?></a>
+									<a role="tab" data-toggle="tab" href="#gallery"><?php echo _e("Foto's", 'icelandic-horse'); ?></a>
+								</li>
+								<?php endif; ?>
+								<?php if ($data['movie1'] || $data['movie2']): ?>
+								<li>
+									<a role="tab" data-toggle="tab" href="#movie"><?php echo _e("Video's", 'icelandic-horse'); ?></a>
 								</li>
 								<?php endif; ?>
 								<?php if (get_the_content() != ''): ?>
 								<li <?php if ($fotos === false): ?>class="active"<?php endif; ?>>
-									<a role="tab" data-toggle="tab" href="#info"><?php echo _e('Informatie'); ?></a>
+									<a role="tab" data-toggle="tab" href="#info"><?php echo _e('Informatie', 'icelandic-horse'); ?></a>
 								</li>
 								<?php endif; ?>
 								<?php if ($nakomelingen !== false && $nakomelingen[0]['name'] != ''): ?>
 								
 								<li>
-									<a role="tab" data-toggle="tab" href="#nakomelingen"><?php echo _e('Nakomelingen'); ?></a>
+									<a role="tab" data-toggle="tab" href="#nakomelingen"><?php echo _e('Nakomelingen', 'icelandic-horse'); ?></a>
 								</li>
 								<?php endif; ?>
 								<?php if (@$verrichtingen['show']['self'] || @$exterieur['show']['self'] || @$verrichtingen['show']['f'] || @$exterieur['show']['f'] || @$verrichtingen['show']['m'] || @$exterieur['show']['m']): ?>
 								<li>
-									<a role="tab" data-toggle="tab" href="#keuringsresultaten"><?php echo _e('Keurings resultaten') ?></a>
+									<a role="tab" data-toggle="tab" href="#keuringsresultaten"><?php echo _e('Keurings resultaten', 'icelandic-horse') ?></a>
 								</li>
 								<?php endif; ?>
 								<?php if ($stamboom['name']['m'] || $stamboom['name']['f']): ?>
 								<li>
-									<a role="tab" data-toggle="tab" href="#stamboom"><?php echo _e('Stamboom') ?></a>
+									<a role="tab" data-toggle="tab" href="#stamboom"><?php echo _e('Stamboom', 'icelandic-horse') ?></a>
 								</li>
 								<?php endif; ?>
 							</ul>
@@ -141,6 +146,18 @@ wp_enqueue_style('jquery.fancybox.css','/wp-content/themes/fralotus-arcade-child
 										<?php endforeach; ?>
 									</div>
 								</div>
+								<div class="tab-pane" id="movie">
+                                    <?php if ($data['movie1']): ?>
+                                    <div style="position: relative;padding-bottom: 56.25%; /* 16:9 */padding-top: 25px;height: 0; <?php if ($data['movie2']): ?>margin-bottom: 15px;<?php endif; ?>">
+                                        <iframe style="	position: absolute;top: 0;left: 0;width: 100%;height: 100%;" width="100%" src="https://www.youtube.com/embed/<?php echo $data['movie1']; ?>" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                    <?php endif; ?>
+                                    <?php if ($data['movie2']): ?>
+                                    <div style="position: relative;padding-bottom: 56.25%; /* 16:9 */padding-top: 25px;height: 0;">
+                                        <iframe style="	position: absolute;top: 0;left: 0;width: 100%;height: 100%;" src="https://www.youtube.com/embed/<?php echo $data['movie2']; ?>" frameborder="0" allowfullscreen></iframe>
+                                    </div>
+                                    <?php endif; ?>                                    
+								</div>                                
 								<div class="tab-pane <?php if ($fotos === false): ?>active<?php endif; ?>" id="info" >
 									<?php the_content(); ?>
 								</div>
@@ -191,29 +208,29 @@ wp_enqueue_style('jquery.fancybox.css','/wp-content/themes/fralotus-arcade-child
 									<?php endforeach; ?>
 								</div>
 								<div class="tab-pane" id="keuringsresultaten">
-									<h3><?php echo _e("Totalen"); ?></h3>
+									<h3><?php echo _e("Totalen", 'icelandic-horse'); ?></h3>
 									<table class='table' style='width: auto;'>
 										<thead>
 											<th style='width: 20em;'>&nbsp;</th>
 											<?php if (@$verrichtingen['show']['self'] || @$exterieur['show']['self']): ?><th style='width: 6em;'><?php echo $firstname ?></th><?php endif; ?>
-											<?php if (@$verrichtingen['show']['m'] || @$exterieur['show']['m']): ?><th style='width: 6em;'><?php echo _e('Moeder') ?></th><?php endif; ?>
-											<?php if (@$verrichtingen['show']['f'] || @$exterieur['show']['f']): ?><th style='width: 6em;'><?php echo _e('Vader') ?></th><?php endif; ?>
+											<?php if (@$verrichtingen['show']['m'] || @$exterieur['show']['m']): ?><th style='width: 6em;'><?php echo _e('Moeder', 'icelandic-horse') ?></th><?php endif; ?>
+											<?php if (@$verrichtingen['show']['f'] || @$exterieur['show']['f']): ?><th style='width: 6em;'><?php echo _e('Vader', 'icelandic-horse') ?></th><?php endif; ?>
 										</thead>
 										<tbody>
 											<tr>
-												<th><?php echo _e("Exterieur"); ?></th>
+												<th><?php echo _e("Exterieur", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self'] || @$exterieur['show']['self']): ?><td><?php if (@$exterieur['show']['self']): ?><?php if (isset($exterieur['totaal']['self']) && $exterieur['totaal']['self']): ?><?php echo $exterieur['totaal']['self']; ?><?php else: ?>&nbsp;<?php endif; ?><?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m'] || @$exterieur['show']['m']): ?><td><?php if (@$exterieur['show']['m']): ?><?php if (isset($exterieur['totaal']['m']) && $exterieur['totaal']['m']): ?><?php echo $exterieur['totaal']['m']; ?><?php else: ?>&nbsp;<?php endif; ?><?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f'] || @$exterieur['show']['f']): ?><td><?php if (@$exterieur['show']['f']): ?><?php if (isset($exterieur['totaal']['f']) && $exterieur['totaal']['f']): ?><?php echo $exterieur['totaal']['f']; ?><?php else: ?>&nbsp;<?php endif; ?><?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Verrichtingen"); ?></th>
+												<th><?php echo _e("Verrichtingen", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self'] || @$exterieur['show']['self']): ?><td><?php if (@$verrichtingen['show']['self']): ?><?php if (isset($verrichtingen['totaal']['self']) && $verrichtingen['totaal']['self']): ?><?php echo $verrichtingen['totaal']['self']; ?><?php else: ?>&nbsp;<?php endif; ?><?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m'] || @$exterieur['show']['m']): ?><td><?php if (@$verrichtingen['show']['m']): ?><?php if (isset($verrichtingen['totaal']['m']) && $verrichtingen['totaal']['m']): ?><?php echo $verrichtingen['totaal']['m']; ?><?php else: ?>&nbsp;<?php endif; ?><?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f'] || @$exterieur['show']['f']): ?><td><?php if (@$verrichtingen['show']['f']): ?><?php if (isset($verrichtingen['totaal']['f']) && $verrichtingen['totaal']['f']): ?><?php echo $verrichtingen['totaal']['f']; ?><?php else: ?>&nbsp;<?php endif; ?><?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Gemiddeld"); ?></th>
+												<th><?php echo _e("Gemiddeld", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self'] || @$exterieur['show']['self']): ?><td><?php if (@$verrichtingen['show']['self'] && @$exterieur['show']['self']): ?><?php if (isset($totaal['self']) && $totaal['self']): ?><?php echo $totaal['self']; ?><?php else: ?>&nbsp;<?php endif; ?><?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m'] || @$exterieur['show']['m']): ?><td><?php if (@$verrichtingen['show']['m'] && @$exterieur['show']['m']): ?><?php if (isset($totaal['m']) && $totaal['m']): ?><?php echo $totaal['m']; ?><?php else: ?>&nbsp;<?php endif; ?><?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f'] || @$exterieur['show']['f']): ?><td><?php if (@$verrichtingen['show']['f'] && @$exterieur['show']['f']): ?><?php if (isset($totaal['f']) && $totaal['f']): ?><?php echo $totaal['f']; ?><?php else: ?>&nbsp;<?php endif; ?><?php endif; ?></td><?php endif; ?>
@@ -221,65 +238,65 @@ wp_enqueue_style('jquery.fancybox.css','/wp-content/themes/fralotus-arcade-child
 										</tbody>
 									</table>								
 
-									<h3><?php echo _e('Exterieur'); ?></h3>
+									<h3><?php echo _e('Exterieur', 'icelandic-horse'); ?></h3>
 									<table class='table' style='width: auto;'>
 										<thead>
-											<th style='width: 20em;'><?php echo _e("Onderdeel"); ?></th>
+											<th style='width: 20em;'><?php echo _e("Onderdeel", 'icelandic-horse'); ?></th>
 											<?php if (@$exterieur['show']['self']): ?><th style='width: 6em;'><?php echo $firstname ?></th><?php endif; ?>
-											<?php if (@$exterieur['show']['m']): ?><th style='width: 6em;'><?php echo _e('Moeder') ?></th><?php endif; ?>
-											<?php if (@$exterieur['show']['f']): ?><th style='width: 6em;'><?php echo _e('Vader') ?></th><?php endif; ?>
+											<?php if (@$exterieur['show']['m']): ?><th style='width: 6em;'><?php echo _e('Moeder', 'icelandic-horse') ?></th><?php endif; ?>
+											<?php if (@$exterieur['show']['f']): ?><th style='width: 6em;'><?php echo _e('Vader', 'icelandic-horse') ?></th><?php endif; ?>
 										</thead>
 										<tbody>
 											<tr>
-												<th><?php echo _e("Hoofd"); ?></th>
+												<th><?php echo _e("Hoofd", 'icelandic-horse'); ?></th>
 												<?php if (@$exterieur['show']['self']): ?><td><?php if (isset($exterieur['hoofd']['self']) && $exterieur['hoofd']['self']): ?><?php echo $exterieur['hoofd']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['m']): ?><td><?php if (isset($exterieur['hoofd']['m']) && $exterieur['hoofd']['m']): ?><?php echo $exterieur['hoofd']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['f']): ?><td><?php if (isset($exterieur['hoofd']['f']) && $exterieur['hoofd']['f']): ?><?php echo $exterieur['hoofd']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Hals/Schouder/Borst"); ?></th>
+												<th><?php echo _e("Hals/Schouder/Borst", 'icelandic-horse'); ?></th>
 												<?php if (@$exterieur['show']['self']): ?><td><?php if (isset($exterieur['hsb']['self']) && $exterieur['hsb']['self']): ?><?php echo $exterieur['hsb']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['m']): ?><td><?php if (isset($exterieur['hsb']['m']) && $exterieur['hsb']['m']): ?><?php echo $exterieur['hsb']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['f']): ?><td><?php if (isset($exterieur['hsb']['f']) && $exterieur['hsb']['f']): ?><?php echo $exterieur['hsb']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Bovenlijn/kruis"); ?></th>
+												<th><?php echo _e("Bovenlijn/kruis", 'icelandic-horse'); ?></th>
 												<?php if (@$exterieur['show']['self']): ?><td><?php if (isset($exterieur['bk']['self']) && $exterieur['bk']['self']): ?><?php echo $exterieur['bk']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['m']): ?><td><?php if (isset($exterieur['bk']['m']) && $exterieur['bk']['m']): ?><?php echo $exterieur['bk']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['f']): ?><td><?php if (isset($exterieur['bk']['f']) && $exterieur['bk']['f']): ?><?php echo $exterieur['bk']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Verhoudingen"); ?></th>
+												<th><?php echo _e("Verhoudingen", 'icelandic-horse'); ?></th>
 												<?php if (@$exterieur['show']['self']): ?><td><?php if (isset($exterieur['verh']['self']) && $exterieur['verh']['self']): ?><?php echo $exterieur['verh']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['m']): ?><td><?php if (isset($exterieur['verh']['m']) && $exterieur['verh']['m']): ?><?php echo $exterieur['verh']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['f']): ?><td><?php if (isset($exterieur['verh']['f']) && $exterieur['verh']['f']): ?><?php echo $exterieur['verh']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Benen"); ?></th>
+												<th><?php echo _e("Benen", 'icelandic-horse'); ?></th>
 												<?php if (@$exterieur['show']['self']): ?><td><?php if (isset($exterieur['benen']['self']) && $exterieur['benen']['self']): ?><?php echo $exterieur['benen']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['m']): ?><td><?php if (isset($exterieur['benen']['m']) && $exterieur['benen']['m']): ?><?php echo $exterieur['benen']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['f']): ?><td><?php if (isset($exterieur['benen']['f']) && $exterieur['benen']['f']): ?><?php echo $exterieur['benen']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Gewrichten"); ?></th>
+												<th><?php echo _e("Gewrichten", 'icelandic-horse'); ?></th>
 												<?php if (@$exterieur['show']['self']): ?><td><?php if (isset($exterieur['gewr']['self']) && $exterieur['gewr']['self']): ?><?php echo $exterieur['gewr']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['m']): ?><td><?php if (isset($exterieur['gewr']['m']) && $exterieur['gewr']['m']): ?><?php echo $exterieur['gewr']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['f']): ?><td><?php if (isset($exterieur['gewr']['f']) && $exterieur['gewr']['f']): ?><?php echo $exterieur['gewr']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Hoeven"); ?></th>
+												<th><?php echo _e("Hoeven", 'icelandic-horse'); ?></th>
 												<?php if (@$exterieur['show']['self']): ?><td><?php if (isset($exterieur['hoeven']['self']) && $exterieur['hoeven']['self']): ?><?php echo $exterieur['hoeven']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['m']): ?><td><?php if (isset($exterieur['hoeven']['m']) && $exterieur['hoeven']['m']): ?><?php echo $exterieur['hoeven']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['f']): ?><td><?php if (isset($exterieur['hoeven']['f']) && $exterieur['hoeven']['f']): ?><?php echo $exterieur['hoeven']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Manen/staart"); ?></th>
+												<th><?php echo _e("Manen/staart", 'icelandic-horse'); ?></th>
 												<?php if (@$exterieur['show']['self']): ?><td><?php if (isset($exterieur['ms']['self']) && $exterieur['ms']['self']): ?><?php echo $exterieur['ms']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['m']): ?><td><?php if (isset($exterieur['ms']['m']) && $exterieur['ms']['m']): ?><?php echo $exterieur['ms']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['f']): ?><td><?php if (isset($exterieur['ms']['f']) && $exterieur['ms']['f']): ?><?php echo $exterieur['ms']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Totaal"); ?></th>
+												<th><?php echo _e("Totaal", 'icelandic-horse'); ?></th>
 												<?php if (@$exterieur['show']['self']): ?><td><?php if (isset($exterieur['totaal']['self']) && $exterieur['totaal']['self']): ?><?php echo $exterieur['totaal']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['m']): ?><td><?php if (isset($exterieur['totaal']['m']) && $exterieur['totaal']['m']): ?><?php echo $exterieur['totaal']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$exterieur['show']['f']): ?><td><?php if (isset($exterieur['totaal']['f']) && $exterieur['totaal']['f']): ?><?php echo $exterieur['totaal']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
@@ -288,71 +305,71 @@ wp_enqueue_style('jquery.fancybox.css','/wp-content/themes/fralotus-arcade-child
 										</tbody>
 									</table>
 
-									<h3>Verrichtingen</h3>
+									<h3><?php echo _e('Verrichtingen', 'icelandic-horse'); ?></h3>
 									<table class='table' style='width: auto;'>
 										<thead>
-											<th style='width: 20em;'><?php echo _e("Onderdeel"); ?></th>
+											<th style='width: 20em;'><?php echo _e("Onderdeel", 'icelandic-horse'); ?></th>
 											<?php if (@$verrichtingen['show']['self']): ?><th style='width: 6em;'><?php echo $firstname ?></th><?php endif; ?>
-											<?php if (@$verrichtingen['show']['m']): ?><th style='width: 6em;'><?php echo _e('Moeder') ?></th><?php endif; ?>
-											<?php if (@$verrichtingen['show']['f']): ?><th style='width: 6em;'><?php echo _e('Vader') ?></th><?php endif; ?>
+											<?php if (@$verrichtingen['show']['m']): ?><th style='width: 6em;'><?php echo _e('Moeder', 'icelandic-horse') ?></th><?php endif; ?>
+											<?php if (@$verrichtingen['show']['f']): ?><th style='width: 6em;'><?php echo _e('Vader', 'icelandic-horse') ?></th><?php endif; ?>
 										</thead>
 										<tbody>
 											<tr>
-												<th><?php echo _e("T&ouml;lt"); ?></th>
+												<th><?php echo _e("T&ouml;lt", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self']): ?><td><?php if (isset($verrichtingen['tolt']['self']) && $verrichtingen['tolt']['self']): ?><?php echo $verrichtingen['tolt']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m']): ?><td><?php if (isset($verrichtingen['tolt']['m']) && $verrichtingen['tolt']['m']): ?><?php echo $verrichtingen['tolt']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f']): ?><td><?php if (isset($verrichtingen['tolt']['f']) && $verrichtingen['tolt']['f']): ?><?php echo $verrichtingen['tolt']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Langzame T&ouml;lt"); ?></th>
+												<th><?php echo _e("Langzame T&ouml;lt", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self']): ?><td><?php if (isset($verrichtingen['ltolt']['self']) && $verrichtingen['ltolt']['self']): ?><?php echo $verrichtingen['ltolt']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m']): ?><td><?php if (isset($verrichtingen['ltolt']['m']) && $verrichtingen['ltolt']['m']): ?><?php echo $verrichtingen['ltolt']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f']): ?><td><?php if (isset($verrichtingen['ltolt']['f']) && $verrichtingen['ltolt']['f']): ?><?php echo $verrichtingen['ltolt']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Draf"); ?></th>
+												<th><?php echo _e("Draf", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self']): ?><td><?php if (isset($verrichtingen['draf']['self']) && $verrichtingen['draf']['self']): ?><?php echo $verrichtingen['draf']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m']): ?><td><?php if (isset($verrichtingen['draf']['m']) && $verrichtingen['draf']['m']): ?><?php echo $verrichtingen['draf']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f']): ?><td><?php if (isset($verrichtingen['draf']['f']) && $verrichtingen['draf']['f']): ?><?php echo $verrichtingen['draf']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Telgang"); ?></th>
+												<th><?php echo _e("Telgang", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self']): ?><td><?php if (isset($verrichtingen['telgang']['self']) && $verrichtingen['telgang']['self']): ?><?php echo $verrichtingen['telgang']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m']): ?><td><?php if (isset($verrichtingen['telgang']['m']) && $verrichtingen['telgang']['m']): ?><?php echo $verrichtingen['telgang']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f']): ?><td><?php if (isset($verrichtingen['telgang']['f']) && $verrichtingen['telgang']['f']): ?><?php echo $verrichtingen['telgang']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Galop"); ?></th>
+												<th><?php echo _e("Galop", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self']): ?><td><?php if (isset($verrichtingen['galop']['self']) && $verrichtingen['galop']['self']): ?><?php echo $verrichtingen['galop']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m']): ?><td><?php if (isset($verrichtingen['galop']['m']) && $verrichtingen['galop']['m']): ?><?php echo $verrichtingen['galop']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f']): ?><td><?php if (isset($verrichtingen['galop']['f']) && $verrichtingen['galop']['f']): ?><?php echo $verrichtingen['galop']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Langzame Galop"); ?></th>
+												<th><?php echo _e("Langzame Galop", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self']): ?><td><?php if (isset($verrichtingen['lgalop']['self']) && $verrichtingen['lgalop']['self']): ?><?php echo $verrichtingen['lgalop']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m']): ?><td><?php if (isset($verrichtingen['lgalop']['m']) && $verrichtingen['lgalop']['m']): ?><?php echo $verrichtingen['lgalop']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f']): ?><td><?php if (isset($verrichtingen['lgalop']['f']) && $verrichtingen['lgalop']['f']): ?><?php echo $verrichtingen['lgalop']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Karakter/temperament"); ?></th>
+												<th><?php echo _e("Karakter/temperament", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self']): ?><td><?php if (isset($verrichtingen['kt']['self']) && $verrichtingen['kt']['self']): ?><?php echo $verrichtingen['kt']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m']): ?><td><?php if (isset($verrichtingen['kt']['m']) && $verrichtingen['kt']['m']): ?><?php echo $verrichtingen['kt']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f']): ?><td><?php if (isset($verrichtingen['kt']['f']) && $verrichtingen['kt']['f']): ?><?php echo $verrichtingen['kt']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Indruk/Beeld onder de ruiter"); ?></th>
+												<th><?php echo _e("Indruk/Beeld onder de ruiter", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self']): ?><td><?php if (isset($verrichtingen['indruk']['self']) && $verrichtingen['indruk']['self']): ?><?php echo $verrichtingen['indruk']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m']): ?><td><?php if (isset($verrichtingen['indruk']['m']) && $verrichtingen['indruk']['m']): ?><?php echo $verrichtingen['indruk']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f']): ?><td><?php if (isset($verrichtingen['indruk']['f']) && $verrichtingen['indruk']['f']): ?><?php echo $verrichtingen['indruk']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Stap"); ?></th>
+												<th><?php echo _e("Stap", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self']): ?><td><?php if (isset($verrichtingen['stap']['self']) && $verrichtingen['stap']['self']): ?><?php echo $verrichtingen['stap']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m']): ?><td><?php if (isset($verrichtingen['stap']['m']) && $verrichtingen['stap']['m']): ?><?php echo $verrichtingen['stap']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f']): ?><td><?php if (isset($verrichtingen['stap']['f']) && $verrichtingen['stap']['f']): ?><?php echo $verrichtingen['stap']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 											</tr>
 											<tr>
-												<th><?php echo _e("Totaal"); ?></th>
+												<th><?php echo _e("Totaal", 'icelandic-horse'); ?></th>
 												<?php if (@$verrichtingen['show']['self']): ?><td><?php if (isset($verrichtingen['totaal']['self']) && $verrichtingen['totaal']['self']): ?><?php echo $verrichtingen['totaal']['self']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['m']): ?><td><?php if (isset($verrichtingen['totaal']['m']) && $verrichtingen['totaal']['m']): ?><?php echo $verrichtingen['totaal']['m']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>
 												<?php if (@$verrichtingen['show']['f']): ?><td><?php if (isset($verrichtingen['totaal']['f']) && $verrichtingen['totaal']['f']): ?><?php echo $verrichtingen['totaal']['f']; ?><?php else: ?>&nbsp;<?php endif; ?></td><?php endif; ?>

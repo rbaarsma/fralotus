@@ -1,13 +1,11 @@
 <?php
 /**
- * The template used for displaying icelandic horse content
+ * Display horses on sale
  */
 $custom = get_post_custom();
 $data = unserialize($custom['data'][0]); 
 $stamboom = unserialize($custom['stamboom'][0]); 
-
 ?>
-
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>

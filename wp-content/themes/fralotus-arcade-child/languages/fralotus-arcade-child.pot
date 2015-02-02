@@ -1,0 +1,78 @@
+# Copyright (C) 2014 Rein Baasma
+# This file is distributed under the same license as the Arcade Basic Child package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Arcade Basic Child 0.1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/theme/fralotus-arcade-"
+"child\n"
+"POT-Creation-Date: 2014-11-26 15:01:49+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: content-none.php:13
+msgid "Geen paarden hier.."
+msgstr ""
+
+#: content-none.php:17
+msgid "Alle paarden in deze categorie schijnen er vandoor te zijn gegaan!"
+msgstr ""
+
+#: footer.php:17
+msgid "Copyright &copy; %s %s. All Rights Reserved."
+msgstr ""
+
+#: front-page.php:38
+msgid "Merries"
+msgstr ""
+
+#: front-page.php:39 front-page.php:44 front-page.php:49 front-page.php:54
+msgid "Bekijken"
+msgstr ""
+
+#: front-page.php:43
+msgid "Hengsten"
+msgstr ""
+
+#: front-page.php:48
+msgid "Veulens"
+msgstr ""
+
+#: front-page.php:53
+msgid "Verwachting"
+msgstr ""
+
+#: header.php:39
+msgid "Main menu"
+msgstr ""
+
+#: header.php:40
+msgid "Skip to content"
+msgstr ""
+
+#: header.php:77
+msgid "See More"
+msgstr ""
+
+#: front-page.php:84
+msgid "Verkooppaarden"
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "Arcade Basic Child"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Fralotus Theme (Arcade Basic Child)"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Rein Baasma"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.solidwebcode.com/"
+msgstr ""

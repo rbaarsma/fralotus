@@ -61,3 +61,10 @@ body.basic { font-family: 'Raleway', sans-serif; }
 .qtrans_language_chooser .qtrans_flag_pl { background: url(flags/pl.png) }
 
 .sex-icon { width: 50%; }
+
+.sub-category h2.entry-title {
+	text-align: center;
+	margin-top: 43px;
+	margin-bottom: 37px;
+	font-size: 80px;	
+}

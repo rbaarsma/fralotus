@@ -88,6 +88,14 @@ function display_icelandic_horse_personal_meta_box( $icelandic_horse ) {
             <td><input type="text" size="80" name="icelandic_horse_data[name]" value="<?php echo @$data['name']; ?>" /></td>
         </tr>
         <tr>
+            <td style="width: 100%">Filmpje #1</td>
+            <td><input type="text" size="80" name="icelandic_horse_data[movie1]" value="<?php echo @$data['movie1']; ?>" /></td>
+        </tr>
+        <tr>
+            <td style="width: 100%">Filmpje #2</td>
+            <td><input type="text" size="80" name="icelandic_horse_data[movie2]" value="<?php echo @$data['movie2']; ?>" /></td>
+        </tr>
+        <tr>
             <td style="width: 100%">FEIF nummer</td>
             <td><input type="text" size="80" name="icelandic_horse_data[feif]" value="<?php echo @$data['feif']; ?>" /></td>
         </tr>
@@ -629,5 +637,12 @@ function include_template_function( $template_path ) {
     }
     return $template_path;
 }
+
+add_action('init', 'ih_load_textdomain');
+
+function ih_load_textdomain() {
+	load_plugin_textdomain('icelandic-horse', FALSE, dirname(plugin_basename(__FILE__)).'/languages/');
+}
+
 
 ?>

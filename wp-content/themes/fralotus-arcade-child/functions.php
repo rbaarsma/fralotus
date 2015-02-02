@@ -32,3 +32,8 @@ function swc_nav_menu_args( $args ) {
 
 // Add our custom function to the 'thematic_header' phase
 add_filter( 'wp_nav_menu_args', 'swc_nav_menu_args' );
+
+add_action( 'after_setup_theme', 'my_child_theme_setup' );
+function my_child_theme_setup() {
+	$result = load_child_theme_textdomain( 'fralotus-arcade-child', get_stylesheet_directory() . '/languages' );
+}

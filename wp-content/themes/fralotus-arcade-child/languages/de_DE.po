@@ -1,0 +1,80 @@
+# Copyright (C) 2014 Rein Baasma
+# This file is distributed under the same license as the Arcade Basic Child package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Arcade Basic Child 0.1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/theme/fralotus-arcade-"
+"child\n"
+"POT-Creation-Date: 2014-11-26 15:01:49+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-12-05 16:56+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.6.10\n"
+"Language: de_DE\n"
+
+#: content-none.php:13
+msgid "Geen paarden hier.."
+msgstr "Keine Pferde hier..."
+
+#: content-none.php:17
+msgid "Alle paarden in deze categorie schijnen er vandoor te zijn gegaan!"
+msgstr "Alle Pferde, die in dieser Kategorie scheint weg gegangen zu sein!"
+
+#: footer.php:17
+msgid "Copyright &copy; %s %s. All Rights Reserved."
+msgstr "Copyright &copy; %s %s. All Rights Reserved."
+
+#: front-page.php:38
+msgid "Merries"
+msgstr "Stuten"
+
+#: front-page.php:39 front-page.php:44 front-page.php:49 front-page.php:54
+msgid "Bekijken"
+msgstr "Sehen"
+
+#: front-page.php:43
+msgid "Hengsten"
+msgstr "Hengste"
+
+#: front-page.php:48
+msgid "Veulens"
+msgstr "Fohlen"
+
+#: front-page.php:53
+msgid "Verwachting"
+msgstr "Abfohlliste"
+
+#: header.php:39
+msgid "Main menu"
+msgstr "Main menu"
+
+#: header.php:40
+msgid "Skip to content"
+msgstr "Skip to content"
+
+#: header.php:77
+msgid "See More"
+msgstr "See More"
+
+#: front-page.php:84
+msgid "Verkooppaarden"
+msgstr "Verkaufpferde"
+
+#. Theme Name of the plugin/theme
+msgid "Arcade Basic Child"
+msgstr "Arcade Basic Child"
+
+#. Description of the plugin/theme
+msgid "Fralotus Theme (Arcade Basic Child)"
+msgstr "Fralotus Theme (Arcade Basic Child)"
+
+#. Author of the plugin/theme
+msgid "Rein Baasma"
+msgstr "Rein Baasma"
+
+#. Author URI of the plugin/theme
+msgid "http://www.solidwebcode.com/"
+msgstr "http://www.solidwebcode.com/"

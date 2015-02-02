@@ -8,191 +8,195 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2015-02-01 18:16+0100\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2);\n"
+"Language: pl_PL\n"
+"X-Generator: Poedit 1.7.4\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 
 #: content-icelandic_horse.php:30 single-icelandic_horse.php:53
 msgid "Geboortedatum"
-msgstr ""
+msgstr "data urodzenia"
 
 #: content-icelandic_horse.php:36 single-icelandic_horse.php:59
 #: single-icelandic_horse.php:168
 msgid "Kleur"
-msgstr ""
+msgstr "Kolor"
 
 #: content-icelandic_horse.php:43 single-icelandic_horse.php:174
 #: single-icelandic_horse.php:199 single-icelandic_horse.php:229
 #: single-icelandic_horse.php:296
 msgid "Moeder"
-msgstr ""
+msgstr "Matka"
 
 #: content-icelandic_horse.php:49 single-icelandic_horse.php:174
 #: single-icelandic_horse.php:200 single-icelandic_horse.php:230
 #: single-icelandic_horse.php:297
 msgid "Vader"
-msgstr ""
+msgstr "Ojciec"
 
 #: content-icelandic_horse.php:55 single-icelandic_horse.php:65
 msgid "Keuringsresultaat"
-msgstr ""
+msgstr "Ocena hodowli"
 
 #: content-icelandic_horse.php:61 single-icelandic_horse.php:71
 msgid "Prijscategorie"
-msgstr ""
+msgstr "Kategoria Cena"
 
 #: content-icelandic_horse.php:67 single-icelandic_horse.php:83
 msgid "Dekgeld"
-msgstr ""
+msgstr "Opłata za krycie"
 
 #: content-icelandic_horse.php:84
 msgid "Bekijken"
-msgstr ""
+msgstr "Zobacz"
 
 #: content-icelandic_horse.php:87
 msgid "Pages:"
-msgstr ""
+msgstr "Strony"
 
 #: content-icelandic_horse.php:89
 msgid "Edit"
-msgstr ""
+msgstr "Edytuj"
 
 #: single-icelandic_horse.php:41
 msgid "Geslacht"
-msgstr ""
+msgstr "Płeć"
 
 #: single-icelandic_horse.php:47 single-icelandic_horse.php:156
 msgid "FEIF Nummer"
-msgstr ""
+msgstr "Numer FEIF"
 
 #: single-icelandic_horse.php:99
 msgid "Foto's"
-msgstr ""
+msgstr "Zdjęcia"
 
 #: single-icelandic_horse.php:104
 msgid "Video's"
-msgstr ""
+msgstr "Filmy"
 
 #: single-icelandic_horse.php:104
 msgid "Informatie"
-msgstr ""
+msgstr "Informacje"
 
 #: single-icelandic_horse.php:110
 msgid "Nakomelingen"
-msgstr ""
+msgstr "Potomstwo"
 
 #: single-icelandic_horse.php:115
 msgid "Keurings resultaten"
-msgstr ""
+msgstr "Ocena hodowli"
 
 #: single-icelandic_horse.php:120
 msgid "Stamboom"
-msgstr ""
+msgstr "Genealogia"
 
 #: single-icelandic_horse.php:162
 msgid "Geboortejaar"
-msgstr ""
+msgstr "Rok urodzenia"
 
 #: single-icelandic_horse.php:194
 msgid "Totalen"
-msgstr ""
+msgstr "Podsumowania"
 
 #: single-icelandic_horse.php:204 single-icelandic_horse.php:224
 msgid "Exterieur"
-msgstr ""
+msgstr "Exterieur"
 
 #: single-icelandic_horse.php:210
 msgid "Verrichtingen"
-msgstr ""
+msgstr "Ruch"
 
 #: single-icelandic_horse.php:216
 msgid "Gemiddeld"
-msgstr ""
+msgstr "średnia"
 
 #: single-icelandic_horse.php:227 single-icelandic_horse.php:294
 msgid "Onderdeel"
-msgstr ""
+msgstr "Sekcja"
 
 #: single-icelandic_horse.php:234
 msgid "Hoofd"
-msgstr ""
+msgstr "Głowa"
 
 #: single-icelandic_horse.php:240
 msgid "Hals/Schouder/Borst"
-msgstr ""
+msgstr "Szyja, Kłąb i Łopatki"
 
 #: single-icelandic_horse.php:246
 msgid "Bovenlijn/kruis"
-msgstr ""
+msgstr "Tył i Zad"
 
 #: single-icelandic_horse.php:252
 msgid "Verhoudingen"
-msgstr ""
+msgstr "Proporcje"
 
 #: single-icelandic_horse.php:258
 msgid "Benen"
-msgstr ""
+msgstr "Nogi (jakość)"
 
 #: single-icelandic_horse.php:264
 msgid "Gewrichten"
-msgstr ""
+msgstr "Nogi (stawy)"
 
 #: single-icelandic_horse.php:270
 msgid "Hoeven"
-msgstr ""
+msgstr "Kopyta"
 
 #: single-icelandic_horse.php:276
 msgid "Manen/staart"
-msgstr ""
+msgstr "Grzywa i ogon"
 
 #: single-icelandic_horse.php:282 single-icelandic_horse.php:355
 msgid "Totaal"
-msgstr ""
+msgstr "Suma"
 
 #: single-icelandic_horse.php:301
 msgid "T&ouml;lt"
-msgstr ""
+msgstr "T&ouml;lt"
 
 #: single-icelandic_horse.php:307
 msgid "Langzame T&ouml;lt"
-msgstr ""
+msgstr "Powolny T&ouml;lt"
 
 #: single-icelandic_horse.php:313
 msgid "Draf"
-msgstr ""
+msgstr "Kłus"
 
 #: single-icelandic_horse.php:319
 msgid "Telgang"
-msgstr ""
+msgstr "Inochód"
 
 #: single-icelandic_horse.php:325
 msgid "Galop"
-msgstr ""
+msgstr "Galop"
 
 #: single-icelandic_horse.php:331
 msgid "Langzame Galop"
-msgstr ""
+msgstr "Cwał"
 
 #: single-icelandic_horse.php:337
 msgid "Karakter/temperament"
-msgstr ""
+msgstr "Temperament"
 
 #: single-icelandic_horse.php:343
 msgid "Indruk/Beeld onder de ruiter"
-msgstr ""
+msgstr "Prezentacja pod jeźdźcem"
 
 #: single-icelandic_horse.php:349
 msgid "Stap"
-msgstr ""
+msgstr "Stęp "
 
 #. Plugin Name of the plugin/theme
 msgid "Icelandic Horse"
-msgstr ""
+msgstr "Koń Islandzki"
 
 #. Description of the plugin/theme
 msgid "custom post type for Icelandic Horses"
-msgstr ""
+msgstr "custom post type for Icelandic Horses"
 
 #. Author of the plugin/theme
 msgid "Rein Baarsma"
-msgstr ""
+msgstr "Rein Baarsma"

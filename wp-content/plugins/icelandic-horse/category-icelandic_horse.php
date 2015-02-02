@@ -17,53 +17,75 @@ get_header(); ?>
 	<div class="container">
 		<div class="row">
 			<section id="primary" class="col-md-8 col-lg-9 pull-right hfeed">
-
-				<?php //query_posts( '&orderby=date&order=ASC' ); ?>
 				<?php
-				
-				query_posts($query_string . '&order_by=menu_order&order=ASC');
-
-				?>
-				<?php if ( have_posts() ) : ?>
-
-					<header id="archive-header">
-						<?php if ( is_author() ) echo get_avatar( get_the_author_meta( 'ID' ), 80 ); ?>
-						<h1 class="page-title">
-							<?php echo single_cat_title( '', false ); ?>
-						</h1><!-- .page-title -->
-						<?php
-		                if ( $description = term_description() )
-							printf( '<h2 class="archive-meta">%s</h2>', $description );
-						?>
-					</header>
-
-					<?php
-					while ( have_posts() ) : the_post();
-
-					
-						/* Include the post format-specific template for the content. If you want to
-						 * this in a child theme then include a file called called content-___.php
-						 * (where ___ is the post format) and that will be used instead.
-						 */
-						//get_template_part( 'content', get_post_type() ?: 'icelandic_horse' );
+				if (is_category(3)) // veulens
+				{
+					$categories = get_categories(array('parent' => 3, 'order'=>'DESC'));
+					foreach ($categories as $category): ?>
+						<article class="sub-category" id="category-<?php echo $category->term_id ?>">
+						<div class="entry-content row">
+							<div class="col-sm-7">
+								<h2 class="entry-title"><a href="<?php echo get_category_link($category); ?>"><?php echo $category->name ?></a></h2>
+								<!--<p><?php echo __('Aantal paarden'); ?>: <?php echo $category->category_count ?></p>-->
+								<a class="btn btn-primary" href="<?php echo get_category_link($category); ?>"><?php echo __('Bekijken'); ?></a>
+							</div>
+							<?php if (function_exists('z_taxonomy_image_url')): ?>
+							<div class="col-sm-5">
+								<a href="<?php echo get_category_link($category); ?>"><img class="img-responsive img-rounded" src="<?php echo z_taxonomy_image_url($category->term_id); ?>"></a>
+							</div>
+							<?php endif; ?>
+						</div>
+						</article>
 						
-						// checks if the file exists in the theme first,
-						// otherwise serve the file from the plugin
-						if ( $theme_file = locate_template( array ( 'content-icelandic_horse.php' ) ) ) {
-							$template_path = $theme_file;
-						} else {
+					<?php endforeach;
+					
+				}
+				else
+				{
+					
+					query_posts($query_string . '&orderby=menu_order&order=ASC');
 
-							$template_path = plugin_dir_path( __FILE__ ) . '/content-icelandic_horse.php';
-						}
+					?>
+					<?php if ( have_posts() ) : ?>
 
-						load_template($template_path, false);
+						<header id="archive-header">
+							<?php if ( is_author() ) echo get_avatar( get_the_author_meta( 'ID' ), 80 ); ?>
+							<h1 class="page-title">
+								<?php echo single_cat_title( '', false ); ?>
+							</h1><!-- .page-title -->
+							<?php
+							if ( $description = term_description() )
+								printf( '<h2 class="archive-meta">%s</h2>', $description );
+							?>
+						</header>
 
-					endwhile;
+						<?php
+						while ( have_posts() ) : the_post();
 
-					bavotasan_pagination();
-				else :
-					get_template_part( 'content', 'none' );
-				endif;
+							/* Include the post format-specific template for the content. If you want to
+							 * this in a child theme then include a file called called content-___.php
+							 * (where ___ is the post format) and that will be used instead.
+							 */
+							//get_template_part( 'content', get_post_type() ?: 'icelandic_horse' );
+
+							// checks if the file exists in the theme first,
+							// otherwise serve the file from the plugin
+							if ( $theme_file = locate_template( array ( 'content-icelandic_horse.php' ) ) ) {
+								$template_path = $theme_file;
+							} else {
+
+								$template_path = plugin_dir_path( __FILE__ ) . '/content-icelandic_horse.php';
+							}
+
+							load_template($template_path, false);
+
+						endwhile;
+
+						bavotasan_pagination();
+					else :
+						get_template_part( 'content', 'none' );
+					endif;
+				}
 				?>
 
 			</section><!-- #primary.c8 -->
